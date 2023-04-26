@@ -1,0 +1,13 @@
+.input-sections{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    cursor: pointer;
+}
+.submit-button{
+    margin-top: 10%;
+}
+.resume-form{
+    width: fit-content;
+    margin: 2rem auto;
+}

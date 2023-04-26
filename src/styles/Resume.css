@@ -1,0 +1,27 @@
+.resume {
+  text-align: left;
+  width: 50%;
+  margin: 1rem;
+  color: rgb(78, 80, 82);
+
+}
+.title{
+  color: rgb(93, 95, 95);
+
+}
+.name-title {
+  font-size: large;
+  font-weight: 450;
+  color: rgb(59, 56, 56);
+}
+.job-title {
+  font-size: small;
+}
+.summary{
+  font-size:x-small;
+
+}
+
+.companyName-jobTitle span{
+padding-right: 2rem;
+}
