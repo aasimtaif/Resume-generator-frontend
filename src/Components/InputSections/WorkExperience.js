@@ -1,4 +1,8 @@
 import React from 'react'
+import { Stack, TextField, Button, } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveSharpIcon from '@mui/icons-material/RemoveSharp';
+
 
 function WorkExperience({ inputValues, setInputValues }) {
 
@@ -28,42 +32,45 @@ function WorkExperience({ inputValues, setInputValues }) {
 
     console.log(inputValues)
     return (
-        <div>{inputValues?.workExperience.map((job, index) => {
-            return (
-                <div key={index}>
-                    <label>Job title
-                        <input name="jobTitle" type="text" onChange={(e) => handleWorkexperienceInput(e, index)} />
-                    </label>
-                    <label>Company name
-                        <input name="companyName" type="text" onChange={(e) => handleWorkexperienceInput(e, index)} />
-                    </label>
-                    <label>
-                        from
-                        <input type='date' name="fromDate" onChange={(e) => handleWorkexperienceInput(e, index)} />
-                    </label>
-                    <label>
-                        Till
-                        <input type='date' name="tillDate" onChange={(e) => handleWorkexperienceInput(e, index)} />
-                    </label>
-                    <br />
-                    <label>
-                        Task description:</label>
-                    <textarea name="description" rows="3" cols="25" placeholder='write about your work in that company' onChange={(e) => handleWorkexperienceInput(e, index)} ></textarea>
-                    {inputValues.workExperience.length !== 1 && (
-                        <button
-                            type="button"
-                            onClick={() => handleWorkExperienceRemove(index)}
-                        >
-                            <span>Remove</span>
-                        </button>
-                    )}
+        <div>
+            {inputValues?.workExperience.map((job, index) => {
+                return (
+                    <Stack spacing={2} key={index}>
 
-                </div>
-            )
-        })}
-            <button
+                        <TextField value={job.jobTitle} sx={{ mt: 5 }} label="Job Title" size="small" name="jobTitle" type="text" onChange={(e) => handleWorkexperienceInput(e, index)} />
+
+                        <TextField value={job.companyName} label="company Name" size="small" name="companyName" type="text" onChange={(e) => handleWorkexperienceInput(e, index)} />
+
+                        <TextField value={job.fromDate} InputLabelProps={{
+                            shrink: true,
+                        }} label="From" size="small" type='date' name="fromDate" onChange={(e) => handleWorkexperienceInput(e, index)} />
+
+                        <TextField value={job.tillDate} InputLabelProps={{
+                            shrink: true,
+                        }} label="Till" type='date' name="tillDate" onChange={(e) => handleWorkexperienceInput(e, index)} />
+                        <TextField value={job.description} name="description" label="description" multiline
+                            maxRows={4} placeholder='write about your work in that company' onChange={(e) => handleWorkexperienceInput(e, index)} />
+                        {inputValues.workExperience.length !== 1 && (
+                            <Button
+                                sx={{ mt: 5 }} size="small"
+                                color="error"
+                                variant="outlined"
+                                startIcon={<RemoveSharpIcon />}
+                                type="button"
+                                onClick={() => handleWorkExperienceRemove(index)}
+                            >
+                                <span>Remove</span>
+                            </Button>
+                        )}
+
+                    </Stack>
+                )
+            })}
+            <Button
                 type="button"
-                onClick={handleWorkExperienceAdd} >Add another</button>
+                sx={{ mt: 3 }}
+                startIcon={<AddIcon />}
+                onClick={handleWorkExperienceAdd} >Add another</Button>
         </div>
     )
 }

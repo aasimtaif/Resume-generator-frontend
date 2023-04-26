@@ -61,9 +61,9 @@ function Education({ inputValues, setInputValues }) {
                             type="button"
                             variant="outlined"
                             color="error"
+                            startIcon={<RemoveSharpIcon/>}
                             onClick={() => handleEducationremove(index)}
                             className="remove-btn"
-                            startIcon={<RemoveSharpIcon/>}
                         >
                             <span>Remove</span>
                         </Button>
@@ -76,8 +76,8 @@ function Education({ inputValues, setInputValues }) {
             <Button sx={{ m: 3 }} size="small"
                 type="button"
                 variant="outlined"
-                onClick={handleEducationAdd}
                 startIcon={<AddIcon />}
+                onClick={handleEducationAdd}
             >
                 <span>Add another</span>
             </Button>

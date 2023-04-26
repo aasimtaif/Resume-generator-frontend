@@ -1,4 +1,7 @@
 import React from 'react'
+import { Stack, TextField, Button, } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveSharpIcon from '@mui/icons-material/RemoveSharp';
 
 function Projects({ inputValues, setInputValues }) {
 
@@ -19,33 +22,42 @@ function Projects({ inputValues, setInputValues }) {
 
     return (
         <div>{inputValues.projects.map((project, index) => {
-            return <div key={index}>
-                Project Name:<input name="projectName" type="text" onChange={(event) => handleProjectinput(event, index)} />
-                Link:<input name="projectLink" type="text" onChange={(event) => handleProjectinput(event, index)} />
+            return <Stack spacing={2} key={index}>
 
-                Technology:<input name="techUsed" type="text"
-onChange={(event) => handleProjectinput(event, index)}
+                <TextField sx={{ mt: 5 }} label="Project Name" size="small" value={project.projectName} name="projectName" type="text" onChange={(event) => handleProjectinput(event, index)} />
+                <TextField label="Link" size="small" value={project.projectLink} name="projectLink" type="text" onChange={(event) => handleProjectinput(event, index)} />
+
+                <TextField label="Technology" size="small" value={project.techUsed} name="techUsed" type="text"
+                    onChange={(event) => handleProjectinput(event, index)}
                 />
 
-                Details:<textarea name="projectDetails" onChange={(event) => handleProjectinput(event, index)}></textarea>
+                <TextField label="Details" multiline
+                    minRows={2} maxRows={4} size="small" placeholder='Project details' value={project.projectDetails} name="projectDetails" onChange={(event) => handleProjectinput(event, index)} />
                 {inputValues.projects.length !== 1 && (
-                    <button
+                    <Button
+                        sx={{ mt: 5 }} size="small"
+                        color="error"
+                        variant="outlined"
+                        startIcon={<RemoveSharpIcon />}
                         type="button"
                         onClick={() => handleProjectRemove(index)}
                     >
                         <span>Remove</span>
-                    </button>
+                    </Button>
                 )}
-            </div>
+            </Stack>
         })}
             <br />
-            <button onClick={() => {
-                setInputValues({
-                    ...inputValues, projects: [...inputValues.projects,
-                    { projectName: "", techUsed: "", details: "", projectLink: "" },
-                    ]
-                })
-            }}>Add another Project</button>
+            <Button
+                startIcon={<AddIcon />}
+                size="small"
+                onClick={() => {
+                    setInputValues({
+                        ...inputValues, projects: [...inputValues.projects,
+                        { projectName: "", techUsed: "", details: "", projectLink: "" },
+                        ]
+                    })
+                }}>Add another</Button>
         </div>
     )
 }
