@@ -38,6 +38,8 @@ function Education({ inputValues, setInputValues }) {
                     <TextField label="Institute Name" size="small"
                         name="instituteName"
                         type="text"
+                        multiline
+                        maxRows={4}
                         sx={{ mt: 3 }}
                         value={edu.instituteName}
                         onChange={(e) => handleEducationChange(e, index)}
@@ -61,7 +63,7 @@ function Education({ inputValues, setInputValues }) {
                             type="button"
                             variant="outlined"
                             color="error"
-                            startIcon={<RemoveSharpIcon/>}
+                            startIcon={<RemoveSharpIcon />}
                             onClick={() => handleEducationremove(index)}
                             className="remove-btn"
                         >

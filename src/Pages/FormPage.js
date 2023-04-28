@@ -42,7 +42,7 @@ function FormPage() {
   ]
 
   const [inputValues, setInputValues] = useState({
-    firstName: '', lastName: '', github: '', linkedIn: '', email: '', phoneNo: '',
+    firstName: '', lastName: '', github: '', linkedIn: '', email: '', phoneNo: '', jobTitle: '',
     educationList: [{
       instituteName: '',
       degree: '',

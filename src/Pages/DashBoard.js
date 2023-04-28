@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import API from "../utils/api"
 import { Link } from 'react-router-dom'
+import "../styles/Dashboard.css"
+
 
 function DashBoard() {
     const { user } = useSelector((state) => state.user)
@@ -25,15 +27,23 @@ function DashBoard() {
         fetchResume()
     }, []);
     return (
-        <div>{resumes?.map((resume,index)=>{
-            return(
-                <Link key={resume._id} to={`/resume/${resume._id}`}>
-                <p >Resume number {index+1}</p>
-                </Link>
-            )
-        })}
-        <Link to="/form">Create resume</Link>
-        </div>
+        <>
+            <div className="resume-display">
+
+
+                {resumes?.map((resume, index) => {
+                    return (
+
+                        <Link className='individual-resume' key={index} to={`/resume/${resume._id}`}>
+                            <p >Resume number {index + 1}</p>
+                        </Link>
+
+                    )
+                })}
+
+            </div>
+            <Link className="create-resume-button" to="/form">Create resume</Link>
+        </>
     )
 }
 

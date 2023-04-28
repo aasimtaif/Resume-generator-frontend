@@ -1,0 +1,15 @@
+.resume-display {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
+  /* gap: 1; */
+}
+
+.create-resume-button {
+  text-decoration: none;
+  margin: 2rem;
+}
+.individual-resume {
+  text-decoration: none;
+}
