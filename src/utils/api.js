@@ -1,6 +1,6 @@
 import axios from "axios";
 const API = axios.create({
-    baseURL: "http://localhost:2000/",
+    baseURL: "https://resume-generator-backend.onrender.com/",
 });
 
 API.interceptors.request.use(
