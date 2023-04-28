@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
-import { LoginPage, FormPage, SignUpPage, DashBoard, Resume, PDF } from './Pages';
+import { LoginPage, FormPage, SignUpPage, DashBoard, Resume } from './Pages';
 import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from './redux/Userlogin';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
@@ -20,8 +20,15 @@ function App() {
         <Route exact path='/dashboard' element={<DashBoard />} />
         <Route exact path='/resume/:resumeId' element={<Resume />} />
       </Routes>
-      <Button variant="contained" color="success" startIcon={<LogoutRoundedIcon />} className="logout-button" onClick={() => dispatch(logOut())}>LogOut</Button>
-      {/* <PDF/> */}
+      {user &&
+        <Button
+          variant="contained"
+          color="success"
+          startIcon={<LogoutRoundedIcon />}
+          className="logout-button"
+          onClick={() => dispatch(logOut())}>LogOut</Button>
+      }
+
     </div>
   );
 }

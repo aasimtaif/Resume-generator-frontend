@@ -1,9 +1,25 @@
 import React, { useState } from 'react'
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux'
 import { storeUser, storeToken } from '../redux/Userlogin';
 import { useNavigate } from 'react-router-dom';
+import {
+  Button,
+  CssBaseline,
+  TextField,
+  Grid,
+  Box,
+  Typography,
+  Container
+} from '@mui/material';
+
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import API from "../utils/api"
+
+
+const theme = createTheme();
+
+
 
 function Login() {
   const dispatch = useDispatch()
@@ -34,17 +50,62 @@ function Login() {
 
   return (
     <div>
-      <label>
-        Email:
-        <input type="email" name="email" onChange={(event) => { handleInput(event) }} />
-      </label>
-      <label>
-        Password:
-        <input type="passowrd" name="password" onChange={(event) => { handleInput(event) }} />
-      </label>
-      <button onClick={handleSignUp}>Login</button>
-      <p>Don't have the account <NavLink to="/signup"> Sign Up </NavLink>  </p>
+      <ThemeProvider theme={theme}>
+        <Container component="main" maxWidth="xs">
+          <CssBaseline />
+          <Box
+            sx={{
+              marginTop: 8,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <Typography component="h1" variant="h5">
+              Sign in
+            </Typography>
+            <Box component="form" onSubmit={handleSignUp} noValidate sx={{ mt: 1 }}>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                label="Email Address"
+                type="email" name="email"
+                onChange={(event) => { handleInput(event) }}
+                autoComplete="email"
+                autoFocus
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                label="Password"
+                type="passowrd" name="password"
+                onChange={(event) => { handleInput(event) }}
+                autoComplete="current-password"
+              />
 
+              <Button
+                type="button"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+                onClick={ handleSignUp}
+              >
+                Sign In
+              </Button>
+              <Grid container>
+                <Grid item>
+                  <Link to="/signUp" >
+                    {"Don't have an account? Sign Up"}
+                  </Link>
+                </Grid>
+              </Grid>
+            </Box>
+          </Box>
+
+        </Container>
+      </ThemeProvider>
 
     </div>
   )

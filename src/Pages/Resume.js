@@ -22,7 +22,7 @@ function Resume() {
 
         }
         fetchResume()
-    }, []);
+    }, [resumeId]);
     console.log(resume)
     if (isLoading) return "wait"
     return (
@@ -42,8 +42,8 @@ function Resume() {
             <h3>Skills</h3>
             {resume.skills.map((skill, index) => {
                 return (
-                    <div className="skills">
-                        <p key={index}>{skill.skillName}
+                    <div key = {index} className="skills">
+                        <p key={index}>{skill.skillName} 
                         <Rating size="small" name="read-only" value={skill.rating} readOnly />
                         </p>
                     </div>

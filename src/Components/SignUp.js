@@ -2,6 +2,16 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { storeUser, storeToken } from '../redux/Userlogin';
 import { useNavigate } from 'react-router-dom'
+import {
+    Button,
+    CssBaseline,
+    TextField,
+    Box,
+    Typography,
+    Container
+} from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 import API from "../utils/api"
 
 
@@ -9,6 +19,7 @@ function SignUp() {
     const [input, setInput] = useState();
     const navigate = useNavigate()
     const dispatch = useDispatch()
+    const theme = createTheme();
 
 
     const handleInput = (event) => {
@@ -18,7 +29,7 @@ function SignUp() {
     console.log(input)
     const handleSignUp = async () => {
         try {
-            const res = await API.signup( input)
+            const res = await API.signup(input)
             console.log(res)
             const { user, token } = res
             dispatch(storeUser(user))
@@ -30,7 +41,7 @@ function SignUp() {
     }
     return (
         <div>
-            <label> Name:
+            {/* <label> Name:
                 <input type="text" name="userName" onChange={(event) => { handleInput(event) }} />
             </label>
             <label>
@@ -41,7 +52,67 @@ function SignUp() {
                 Password:
                 <input type="passowrd" name="password" onChange={(event) => { handleInput(event) }} />
             </label>
-            <button onClick={handleSignUp}>Sign up</button>
+            <button onClick={handleSignUp}>Sign up</button> */}
+
+            <ThemeProvider theme={theme}>
+                <Container component="main" maxWidth="xs">
+                    <CssBaseline />
+                    <Box
+                        sx={{
+                            marginTop: 8,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                        }}
+                    >
+                        <Typography component="h1" variant="h5">
+                            Sign in
+                        </Typography>
+                        <Box component="form" onSubmit={handleSignUp} noValidate sx={{ mt: 1 }}>
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                label="Full Name"
+                                type="text" name="userName"
+                                onChange={(event) => { handleInput(event) }}
+                                autoFocus
+                            />
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                label="Email Address"
+                                type="email" name="email"
+                                onChange={(event) => { handleInput(event) }}
+                                autoComplete="email"
+                                autoFocus
+                            />
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                label="Password"
+                                type="passowrd" name="password"
+                                onChange={(event) => { handleInput(event) }}
+                                autoComplete="current-password"
+                            />
+
+                            <Button
+                                type="button"
+                                fullWidth
+                                variant="contained"
+                                onClick={handleSignUp}
+                                sx={{ mt: 3, mb: 2 }}
+                            >
+                                Sign In
+                            </Button>
+
+                        </Box>
+                    </Box>
+
+                </Container>
+            </ThemeProvider>
         </div>
     )
 }
