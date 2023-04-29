@@ -8,7 +8,9 @@
 
 .create-resume-button {
   text-decoration: none;
-  margin: 2rem;
+  color: blue;
+  /* margin: 20rem;
+  padding: 20rem; */
 }
 .individual-resume {
   text-decoration: none;

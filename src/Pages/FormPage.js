@@ -110,7 +110,7 @@ function FormPage() {
         </Alert>}
       <FormGroup className="resume-form">
         <Stack spacing={3}>
-              <InputHadler inputValues={inputValues} setInputValues={setInputValues} activeSection={activeSection} />
+          <InputHadler inputValues={inputValues} setInputValues={setInputValues} activeSection={activeSection} />
           <Button sx={{ mt: 3 }} size="small" endIcon={<SendIcon />} variant="contained" type="submit" onClick={handleSubmit}>submit</Button>
         </Stack>
       </FormGroup>

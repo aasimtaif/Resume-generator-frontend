@@ -15,7 +15,7 @@ function App() {
 
   return (
     <div className="App">
-      <AnimatePresence mode="wait"/>
+      <AnimatePresence mode="wait" />
       <Routes key={location.pathname} location={location}>
         <Route exact path='/' element={<LoginPage />} />
         <Route exact path='/signUp' element={<SignUpPage />} />
@@ -24,12 +24,15 @@ function App() {
         <Route exact path='/resume/:resumeId' element={<Resume />} />
       </Routes>
       {user &&
-        <Button
-          variant="contained"
-          color="success"
-          startIcon={<LogoutRoundedIcon />}
-          className="logout-button"
-          onClick={() => dispatch(logOut())}>LogOut</Button>
+        <div   className="logout-button">
+
+          <Button
+            variant="contained"
+            color="success"
+            startIcon={<LogoutRoundedIcon />}
+          
+            onClick={() => dispatch(logOut())}>LogOut</Button>
+        </div>
       }
 
     </div>
