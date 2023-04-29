@@ -5,7 +5,8 @@ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import SendIcon from '@mui/icons-material/Send';
-import { Stack } from '@mui/material';
+import { Stack, Alert } from '@mui/material';
+import { motion } from 'framer-motion'
 
 import API from "../utils/api"
 import "../styles/Form.css"
@@ -14,8 +15,8 @@ function FormPage() {
 
   const navigate = useNavigate()
   const { user } = useSelector((state) => state.user)
-
-  console.log(user?._id)
+  const [submitResponse, setSubmitResponse] = useState();
+  // console.log(user?._id)
 
   const sections = [
     {
@@ -55,19 +56,27 @@ function FormPage() {
 
   const handleSubmit = async () => {
     console.log("posting")
+    setSubmitResponse({ message: 'Uploading Please wait', response: 'info' })
+
     try {
       // setInputValues({ ...inputValues, user })
       console.log({ inputValues, user })
       const response = await API.postResume({ ...inputValues, user })
+      setSubmitResponse({ message: 'Successfully Uploaded' })
       console.log("posted successfully", response.status)
-      navigate('/dashboard')
+      setTimeout(() => {
+        navigate('/dashboard')
+      }, 1000)
     } catch (error) {
       console.log(error.message)
+      setSubmitResponse({ message: 'Something went Wrong', response: 'error' })
     }
 
   }
 
-
+  setTimeout(() => {
+    setSubmitResponse()
+  }, 3000)
 
   useEffect(() => {
     if (!user) {
@@ -76,7 +85,12 @@ function FormPage() {
   }, [user]);
 
   return (
-    <>
+    <motion.div
+      initial={{ width: 0 }}
+      animate={{ width: "100%" }}
+      exit={{ x: window.innerWidth, transition: { duration: 0.2 } }}
+    >
+
       <div className='input-sections'>
 
         {sections?.map((section, index) => {
@@ -87,7 +101,13 @@ function FormPage() {
       </div>
       <Link to="/dashboard" className="move-to-dashboard">Dashboard→</Link>
       <p className="current-section">{activeSection.name}</p>
-
+      {submitResponse !== undefined &&
+        <Alert
+          variant="filled"
+          sx={{ mb: 3, width: "auto" }}
+          severity={submitResponse?.response}>
+          {submitResponse?.message}
+        </Alert>}
       <FormGroup className="resume-form">
         <Stack spacing={3}>
 
@@ -96,7 +116,7 @@ function FormPage() {
         </Stack>
       </FormGroup>
 
-    </>
+    </motion.div>
   )
 }
 

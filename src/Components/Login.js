@@ -10,7 +10,8 @@ import {
   Grid,
   Box,
   Typography,
-  Container
+  Container,
+  Alert
 } from '@mui/material';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -26,6 +27,7 @@ function Login() {
   const navigate = useNavigate()
 
   const [input, setInput] = useState();
+  const [loginResponse, setLoginResponse] = useState();
 
   const handleInput = (event) => {
     const { name, value } = event.target
@@ -35,15 +37,21 @@ function Login() {
 
 
   const handleSignUp = async () => {
+    setLoginResponse({ message: 'Please Wait', response: 'info' })
     try {
       const res = await API.login(input)
       const { user, token } = res
       // console.log(token,"line 25")
-      dispatch(storeUser(user))
-      dispatch(storeToken(token))
-      navigate('/form')
+      setLoginResponse({ message: 'successfully Logged In', response: 'success' })
+      setTimeout(() => {
+        dispatch(storeUser(user))
+        dispatch(storeToken(token))
+        navigate('/form')
+      }, "1000")
       console.log(res.data)
     } catch (err) {
+      setLoginResponse({ message: 'Check your email/password again', response: 'error' })
+
       console.log(err.message, "error")
     }
   }
@@ -61,6 +69,13 @@ function Login() {
               alignItems: 'center',
             }}
           >
+            {loginResponse !== undefined &&
+            <Alert 
+            variant="filled" 
+              sx={{mb:3,width:"auto"}}
+            severity={loginResponse?.response}>
+              {loginResponse?.message}
+            </Alert>}
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
@@ -90,7 +105,7 @@ function Login() {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
-                onClick={ handleSignUp}
+                onClick={handleSignUp}
               >
                 Sign In
               </Button>

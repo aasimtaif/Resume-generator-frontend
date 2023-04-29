@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import API from "../utils/api"
 import "../styles/Resume.css"
 import Rating from '@mui/material/Rating';
+import { motion } from 'framer-motion'
 
 function Resume() {
     const { resumeId } = useParams()
@@ -26,7 +27,11 @@ function Resume() {
     console.log(resume)
     if (isLoading) return "wait"
     return (
-        <div className="resume">
+        <motion.div 
+        initial={{width:0}}
+        animate={{width:"100%"}}
+        exit={{x:window.innerWidth,transition:{duration:0.2}}}
+        className="resume">
             <h3 className='name-title'>{`${resume?.firstName} ${resume?.lastName}`}</h3>
             <p className="job-title">job-title</p>
             <p className="summary">{resume.summary}Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,</p>
@@ -49,7 +54,7 @@ function Resume() {
                     </div>
                 )
             })}
-        </div>
+        </motion.div>
     )
 }
 

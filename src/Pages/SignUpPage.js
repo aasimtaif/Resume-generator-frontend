@@ -2,6 +2,7 @@ import React,{useEffect} from 'react'
 import { SignUp } from '../Components'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { motion } from 'framer-motion'
 
 function SignUpPage() {
   const navigate = useNavigate()
@@ -14,7 +15,12 @@ function SignUpPage() {
     }
   }, [user]);
   return (
-    <div><SignUp /></div>
+    <motion.div
+    initial={{width:0}}
+    animate={{width:"100%"}}
+    exit={{x:window.innerWidth,transition:{duration:0.2}}}
+
+    ><SignUp /></motion.div>
   )
 }
 

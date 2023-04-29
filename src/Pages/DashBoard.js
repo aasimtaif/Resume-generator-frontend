@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import API from "../utils/api"
 import { Link } from 'react-router-dom'
 import "../styles/Dashboard.css"
-
+import { motion } from 'framer-motion'
 
 function DashBoard() {
     const { user } = useSelector((state) => state.user)
@@ -27,7 +27,11 @@ function DashBoard() {
         fetchResume()
     }, []);
     return (
-        <>
+        <motion.div
+        initial={{width:0,opacity:0}}
+        animate={{width:"100%" ,opacity:1}}
+        exit={{x:window.innerWidth,opacity:0,transition:{duration:0.2}}}
+        >
             <div className="resume-display">
 
 
@@ -43,7 +47,7 @@ function DashBoard() {
 
             </div>
             <Link className="create-resume-button" to="/form">Create resume</Link>
-        </>
+        </motion.div>
     )
 }
 

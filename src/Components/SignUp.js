@@ -66,7 +66,7 @@ function SignUp() {
                         }}
                     >
                         <Typography component="h1" variant="h5">
-                            Sign in
+                            Sign Up
                         </Typography>
                         <Box component="form" onSubmit={handleSignUp} noValidate sx={{ mt: 1 }}>
                             <TextField
@@ -105,7 +105,7 @@ function SignUp() {
                                 onClick={handleSignUp}
                                 sx={{ mt: 3, mb: 2 }}
                             >
-                                Sign In
+                                Sign Up
                             </Button>
 
                         </Box>
