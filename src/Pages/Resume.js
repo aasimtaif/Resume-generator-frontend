@@ -14,17 +14,14 @@ const styles = StyleSheet.create({
         width: "auto",
     },
     left:{
-        width:"fit-content",
+        width:"30vw",
         marginTop:"3%",
         borderLeft: "1px solid grey",
+        alignItems:"left",
 
     }
 
 });
-
-
-
-
 
 function Resume() {
     const { resumeId } = useParams()
@@ -49,28 +46,6 @@ function Resume() {
             animate={{ width: "100%" }}
             exit={{ x: window.innerWidth, transition: { duration: 0.2 } }}
             className="resume">
-            {/* <h3 className='name-title'>{`${resume?.firstName} ${resume?.lastName}`}</h3>
-            <p className="job-title">job-title</p>
-            <p className="summary">{resume.summary}Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,</p>
-            <h3 className="title">Work Experience</h3>
-            {resume.workExperience.map((work, index) => {
-                return <div key={work._id}>
-                    <div className='companyName-jobTitle'>
-                        <h5><span>{work.jobTitle}</span><span>{work.companyName}</span></h5>
-                        <p className="job-discription">{work.description}</p>
-                    </div>
-                </div>
-            })}
-            <h3>Skills</h3>
-            {resume.skills.map((skill, index) => {
-                return (
-                    <div key = {index} className="skills">
-                        <p key={index}>{skill.skillName} 
-                        <Rating size="small" name="read-only" value={skill.rating} readOnly />
-                        </p>
-                    </div>
-                )
-            })} */}
             <Document
                 author={resume.firstName}
                 keywords="awesome, resume, start wars"
