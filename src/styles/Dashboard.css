@@ -12,4 +12,8 @@
 }
 .individual-resume {
   text-decoration: none;
+  color: black;
+}
+.loader{
+  margin: auto;
 }

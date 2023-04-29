@@ -1,38 +1,44 @@
-@import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=Caveat&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=Caveat&display=swap");
 
-.input-sections{
+.input-sections {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  font-family: "Bruno Ace SC", cursive;
+  background-color: rgb(10, 6, 6);
+  margin-bottom: 1rem;
+  cursor: pointer;
+  color: rgb(221, 218, 218);
+}
+.submit-button {
+  margin-top: 10%;
+}
+.resume-form {
+  width: fit-content;
+  margin: 2rem auto;
+}
+.move-to-dashboard {
+  text-decoration: none;
+  font-weight: 900;
+
+  /* font-family: 'Monaco'; */
+  font-family: "Bruno Ace SC", cursive;
+  color: rgb(57, 48, 48);
+}
+
+.current-section {
+  font-size: 1.2rem;
+  font-weight: 700;
+  font-family: "Caveat", cursive;
+  color: blueviolet;
+}
+.resume-form {
+  background-color: white;
+}
+
+@media screen and (max-width: 600px) {
+  .input-sections {
     display: flex;
-    flex-direction: row;
-    justify-content:space-around;
-    font-family: 'Bruno Ace SC', cursive;
-background-color: rgb(10, 6, 6);
-margin-bottom: 1rem;
-    cursor: pointer;
-    color: rgb(221, 218, 218);
-}
-.submit-button{
-    margin-top: 10%;
-}
-.resume-form{
-    width: fit-content;
-    margin: 2rem auto;
-}
-.move-to-dashboard{
-    text-decoration: none;
-    font-weight: 900;
-
-    /* font-family: 'Monaco'; */
-    font-family: 'Bruno Ace SC', cursive;
-    color: rgb(57, 48, 48);
-}
-
-.current-section{
-    font-size:1.2rem;
-    font-weight: 700;
-    font-family: 'Caveat', cursive;
-    color: blueviolet;
-
-}
-.resume-form{
-    background-color: white;
+    flex-direction: column;
+  }
 }

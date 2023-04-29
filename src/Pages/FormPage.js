@@ -48,7 +48,7 @@ function FormPage() {
       instituteName: '',
       degree: '',
       field: ''
-    },], skills: [{ skillName: "", rating: "" }], workExperience: [{ jobTitle: "", companyName: "", fromDate: "", tillDate: "", description: "" }], projects: [{ projectName: "", techUsed: "", details: "", projectLink: "" },], achievements: [], summary: ""
+    },], skills: [{ skillName: "", rating: '' }], workExperience: [{ jobTitle: "", companyName: "", fromDate: "", tillDate: "", description: "" }], projects: [{ projectName: "", techUsed: "", details: "", projectLink: "" },], achievements: [], summary: ""
   });
   const [activeSection, setActiveSection] = useState(sections[0]);
   console.log(activeSection)
@@ -110,8 +110,7 @@ function FormPage() {
         </Alert>}
       <FormGroup className="resume-form">
         <Stack spacing={3}>
-
-          <InputHadler inputValues={inputValues} setInputValues={setInputValues} activeSection={activeSection} />
+              <InputHadler inputValues={inputValues} setInputValues={setInputValues} activeSection={activeSection} />
           <Button sx={{ mt: 3 }} size="small" endIcon={<SendIcon />} variant="contained" type="submit" onClick={handleSubmit}>submit</Button>
         </Stack>
       </FormGroup>

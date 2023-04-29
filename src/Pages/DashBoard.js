@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import "../styles/Dashboard.css"
 import { motion } from 'framer-motion'
 
-import { ProgressBar } from  'react-loader-spinner'
+import { LineWave } from 'react-loader-spinner'
 
 function DashBoard() {
     const { user } = useSelector((state) => state.user)
@@ -28,23 +28,31 @@ function DashBoard() {
         }
         fetchResume()
     }, []);
+    if (!resumes) {
+        return (
+            <div className="loader">
+                <LineWave
+                    height="200"
+                    width="1000"
+                    color="#4fa94d"
+                    ariaLabel="line-wave"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                    visible={true}
+                    firstLineColor=""
+                    middleLineColor=""
+                    lastLineColor=""
+                />
+            </div>
+        )
+    }
     return (
         <motion.div
-        initial={{width:0,opacity:0}}
-        animate={{width:"100%" ,opacity:1}}
-        exit={{x:window.innerWidth,opacity:0,transition:{duration:0.2}}}
+            initial={{ width: 0, opacity: 0 }}
+            animate={{ width: "100%", opacity: 1 }}
+            exit={{ x: window.innerWidth, opacity: 0, transition: { duration: 0.2 } }}
         >
             <div className="resume-display">
-            {!resumes &&<ProgressBar
-  height="100"
-  width="280"
-  ariaLabel="progress-bar-loading"
-  wrapperStyle={{}}
-  wrapperClass="progress-bar-wrapper"
-  borderColor = '#F4442E'
-  barColor = '#51E5FF'
-/>}
-
                 {resumes?.map((resume, index) => {
                     return (
 

@@ -22,7 +22,7 @@ function Skills({ inputValues, setInputValues }) {
         list.splice(index, 1);
         setInputValues({ ...inputValues, skills: list });
     }
-
+// console.log(typeof(inputValues.skills[0].rating))
     return (
         <div>{inputValues.skills.map((skill, index) => {
             return <div key={index}>
@@ -32,7 +32,7 @@ function Skills({ inputValues, setInputValues }) {
                     type="text" name="skillName" onChange={(e) => { handleInputValues(e, index) }} />
                 <Rating
                     name="rating"
-                    value={skill.rating}
+                    value={parseFloat(skill.rating)}
                     precision={0.5}
                     onChange={(event, newValue) => {
                         const { name} = event.target
