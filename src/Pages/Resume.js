@@ -2,20 +2,35 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import API from "../utils/api"
 import "../styles/Resume.css"
-// import Rating from '@mui/material/Rating';
 import { motion } from 'framer-motion'
-import { BasicInfo, WorkExperience } from '../ResumePDF';
+import { BasicInfo, WorkExperience, Projects, Education, Summary, Skills, } from '../ResumePDF';
+import { View, StyleSheet, Document, Page, } from '@react-pdf/renderer';
+
+
+const styles = StyleSheet.create({
+    container: {
+        display: "flex",
+        flexDirection: 'row',
+        margin: 4,
+        padding: 4,
+        width: "auto",
+    },
+
+});
+
+
+
+
+
 function Resume() {
     const { resumeId } = useParams()
     const [resume, setResume] = useState();
-    // const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchResume = async () => {
             try {
                 const response = await API.getUserResumeByResumeId(resumeId)
                 setResume(response)
-                // setIsLoading(false)
             } catch (error) {
                 console.log(error.message, "something is wrong")
             }
@@ -52,11 +67,25 @@ function Resume() {
                     </div>
                 )
             })} */}
-
-            <BasicInfo basicInfo={resume} />
-            <WorkExperience workExperience={resume.workExperience} />
-
-
+            <Document
+                author={resume.firstName}
+                keywords="awesome, resume, start wars"
+                subject={`The resume of ${resume.firstName}${resume.lastName}`}
+                title="Resume"
+            >
+                <Page size="A4" style={styles.container}>
+                    <BasicInfo basicInfo={resume} />
+                    <View>
+                        <WorkExperience workExperience={resume.workExperience} />
+                        <Projects projects={resume.projects} />
+                        <Education educationList={resume.educationList} />
+                    </View>
+                    <View>
+                        <Summary resume={resume} />
+                        <Skills skills={resume.skills} />
+                    </View>
+                </Page>
+            </Document>
 
 
         </motion.div>

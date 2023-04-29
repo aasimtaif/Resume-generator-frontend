@@ -9,7 +9,8 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         margin: 4,
         padding: 4,
-        width: "100%",
+        width: "auto",
+
     },
     title: {
         fontSize: 35,

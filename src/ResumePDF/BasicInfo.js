@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Text, View, StyleSheet } from '@react-pdf/renderer';
 import { AiFillGithub, AiOutlinePhone, AiOutlineMail, AiFillLinkedin } from 'react-icons/ai';
 // import { Link } from "react-router-dom";
@@ -12,7 +11,7 @@ const styles = StyleSheet.create({
         padding: 0,
         justifyContent: "center",
         alignItems: "center",
-        width: "100%",
+        width: "auto",
         borderBottom: "1px solid black",
 
     },
