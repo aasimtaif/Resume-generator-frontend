@@ -11,10 +11,14 @@ const styles = StyleSheet.create({
     container: {
         display: "flex",
         flexDirection: 'row',
-        margin: 4,
-        padding: 4,
         width: "auto",
     },
+    left:{
+        width:"fit-content",
+        marginTop:"3%",
+        borderLeft: "1px solid grey",
+
+    }
 
 });
 
@@ -73,16 +77,18 @@ function Resume() {
                 subject={`The resume of ${resume.firstName}${resume.lastName}`}
                 title="Resume"
             >
-                <Page size="A4" style={styles.container}>
+                <Page size="A4" >
                     <BasicInfo basicInfo={resume} />
-                    <View>
-                        <WorkExperience workExperience={resume.workExperience} />
-                        <Projects projects={resume.projects} />
-                        <Education educationList={resume.educationList} />
-                    </View>
-                    <View>
-                        <Summary resume={resume} />
-                        <Skills skills={resume.skills} />
+                    <View style={styles.container}>
+                        <View>
+                            <WorkExperience workExperience={resume.workExperience} />
+                            <Projects projects={resume.projects} />
+                            <Education educationList={resume.educationList} />
+                        </View>
+                        <View style={styles.left}>
+                            <Summary resume={resume} />
+                            <Skills skills={resume.skills} />
+                        </View>
                     </View>
                 </Page>
             </Document>
