@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom'
 import "../styles/Dashboard.css"
 import { motion } from 'framer-motion'
 
+import { ProgressBar } from  'react-loader-spinner'
+
 function DashBoard() {
     const { user } = useSelector((state) => state.user)
     const [resumes, setResumes] = useState();
@@ -33,7 +35,15 @@ function DashBoard() {
         exit={{x:window.innerWidth,opacity:0,transition:{duration:0.2}}}
         >
             <div className="resume-display">
-
+            {!resumes &&<ProgressBar
+  height="100"
+  width="280"
+  ariaLabel="progress-bar-loading"
+  wrapperStyle={{}}
+  wrapperClass="progress-bar-wrapper"
+  borderColor = '#F4442E'
+  barColor = '#51E5FF'
+/>}
 
                 {resumes?.map((resume, index) => {
                     return (

@@ -8,7 +8,7 @@ import {
     TextField,
     Box,
     Typography,
-    Container
+    Container,Alert
 } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -17,6 +17,7 @@ import API from "../utils/api"
 
 function SignUp() {
     const [input, setInput] = useState();
+    const [signUpResponse, setSignUpResponse] = useState();
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const theme = createTheme();
@@ -28,16 +29,26 @@ function SignUp() {
     }
     console.log(input)
     const handleSignUp = async () => {
+        setSignUpResponse({ message: 'Please Wait', response: 'info' })
+
         try {
             const res = await API.signup(input)
+        setSignUpResponse({ message: 'Successfully Registered', response: 'success' })
             console.log(res)
             const { user, token } = res
-            dispatch(storeUser(user))
-            dispatch(storeToken(token))
-            navigate("/form")
+            setTimeout(() => {
+                dispatch(storeUser(user))
+                dispatch(storeToken(token))
+                navigate("/form")
+            }, 2500);
         } catch (err) {
+        setSignUpResponse({ message: 'Something went wrong', response: 'error' })
+
             console.log(err.response.data.message)
         }
+        setTimeout(() => {
+            setSignUpResponse()
+        }, 2500);
     }
     return (
         <div>
@@ -68,6 +79,13 @@ function SignUp() {
                         <Typography component="h1" variant="h5">
                             Sign Up
                         </Typography>
+                        {signUpResponse !== undefined &&
+            <Alert 
+            variant="filled" 
+              sx={{mb:3,width:"auto"}}
+            severity={signUpResponse?.response}>
+              {signUpResponse?.message}
+            </Alert>}
                         <Box component="form" onSubmit={handleSignUp} noValidate sx={{ mt: 1 }}>
                             <TextField
                                 margin="normal"
