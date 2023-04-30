@@ -71,7 +71,7 @@ function Login() {
           >
             {loginResponse !== undefined &&
             <Alert 
-            variant="filled" 
+
               sx={{mb:3,width:"auto"}}
             severity={loginResponse?.response}>
               {loginResponse?.message}

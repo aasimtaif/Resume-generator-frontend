@@ -5,27 +5,36 @@ import "../styles/Resume.css"
 import { motion } from 'framer-motion'
 import { BasicInfo, WorkExperience, Projects, Education, Summary, Skills, } from '../ResumePDF';
 import { View, StyleSheet, Document, Page, } from '@react-pdf/renderer';
-
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 const styles = StyleSheet.create({
     container: {
         display: "flex",
         flexDirection: 'row',
-        width: "auto",
+        width: "95%",
     },
-    left:{
-        width:"30vw",
-        marginTop:"3%",
-        borderLeft: "1px solid grey",
-        alignItems:"left",
-
-    }
-
+    left: {
+        width: "35vw",
+        marginTop: "3%",
+        borderLeft: "0.11vw solid #d9e3e5",
+        alignItems: "left",
+    },
 });
 
 function Resume() {
     const { resumeId } = useParams()
     const [resume, setResume] = useState();
+
+    const { user } = useSelector((state) => state.user)
+    const navigate = useNavigate()
+    useEffect(() => {
+        if (!user) {
+            navigate("/")
+        }
+    }, [user]);
+
+
 
     useEffect(() => {
         const fetchResume = async () => {
@@ -46,6 +55,7 @@ function Resume() {
             animate={{ width: "100%" }}
             exit={{ x: window.innerWidth, transition: { duration: 0.2 } }}
             className="resume">
+
             <Document
                 author={resume.firstName}
                 keywords="awesome, resume, start wars"
@@ -55,7 +65,7 @@ function Resume() {
                 <Page size="A4" >
                     <BasicInfo basicInfo={resume} />
                     <View style={styles.container}>
-                        <View>
+                        <View style={styles.right}>
                             <WorkExperience workExperience={resume.workExperience} />
                             <Projects projects={resume.projects} />
                             <Education educationList={resume.educationList} />

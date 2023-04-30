@@ -35,7 +35,8 @@ function Skills({ skills }) {
             {skills.map((skill, index) => {
                 return (
                     <View style={styles.container}>
-                        <Text style={styles.skillName}>{skill.skillName} <Rating size="small" name="read-only" value={skill.rating} readOnly /></Text>
+
+                        <Text style={styles.skillName}>{skill.skillName} <Rating precision={0.5} size="small" name="read-only" value={skill.rating} readOnly /></Text>
                     </View>
                 )
             })}

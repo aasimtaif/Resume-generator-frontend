@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     },
     techUsed: {
         fontWeight: 450,
-        fontSize: 12,
+        fontSize: "0.7rem",
         marginLeft: 5,
         borderLeft: "1px solid black",
     },
@@ -25,7 +25,8 @@ const styles = StyleSheet.create({
         fontWeight: 450,
         fontSize: 12,
         marginLeft: 5,
-        cursior: "pointer"
+        cursior: "pointer",
+        width: "auto",
     },
     description: {
         marginTop: 5,

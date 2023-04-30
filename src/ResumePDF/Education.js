@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
         margin: 4,
         padding: 4,
         width: "auto",
+
     },
     details: {
         fontWeight: 400,

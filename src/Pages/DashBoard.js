@@ -9,8 +9,8 @@ import { motion } from 'framer-motion'
 import { LineWave } from 'react-loader-spinner'
 
 function DashBoard() {
-    const { user } = useSelector((state) => state.user)
     const [resumes, setResumes] = useState();
+    const { user } = useSelector((state) => state.user)
     const navigate = useNavigate()
     useEffect(() => {
         if (!user) {
