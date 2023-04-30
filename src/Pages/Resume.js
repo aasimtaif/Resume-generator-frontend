@@ -7,6 +7,8 @@ import { BasicInfo, WorkExperience, Projects, Education, Summary, Skills, } from
 import { View, StyleSheet, Document, Page, } from '@react-pdf/renderer';
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import DeleteIcon from '@mui/icons-material/Delete';
+
 
 const styles = StyleSheet.create({
     container: {
@@ -56,6 +58,7 @@ function Resume() {
             exit={{ x: window.innerWidth, transition: { duration: 0.2 } }}
             className="resume">
 
+
             <Document
                 author={resume.firstName}
                 keywords="awesome, resume, start wars"
@@ -77,8 +80,7 @@ function Resume() {
                     </View>
                 </Page>
             </Document>
-
-
+            
         </motion.div>
     )
 }

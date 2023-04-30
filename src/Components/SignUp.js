@@ -8,7 +8,7 @@ import {
     TextField,
     Box,
     Typography,
-    Container,Alert
+    Container, Alert
 } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -33,7 +33,7 @@ function SignUp() {
 
         try {
             const res = await API.signup(input)
-        setSignUpResponse({ message: 'Successfully Registered', response: 'success' })
+            setSignUpResponse({ message: 'Successfully Registered', response: 'success' })
             console.log(res)
             const { user, token } = res
             setTimeout(() => {
@@ -42,29 +42,17 @@ function SignUp() {
                 navigate("/form")
             }, 2500);
         } catch (err) {
-        setSignUpResponse({ message: 'Something went wrong', response: 'error' })
+            setSignUpResponse({ message: 'Something went wrong', response: 'error' })
+            if (err.response) setSignUpResponse({ message: err.response?.data.message, response: 'error' })
 
             console.log(err.response.data.message)
+            setTimeout(() => {
+                setSignUpResponse()
+            }, 2500);
         }
-        setTimeout(() => {
-            setSignUpResponse()
-        }, 2500);
     }
     return (
         <div>
-            {/* <label> Name:
-                <input type="text" name="userName" onChange={(event) => { handleInput(event) }} />
-            </label>
-            <label>
-                Email:
-                <input type="email" name="email" onChange={(event) => { handleInput(event) }} />
-            </label>
-            <label>
-                Password:
-                <input type="passowrd" name="password" onChange={(event) => { handleInput(event) }} />
-            </label>
-            <button onClick={handleSignUp}>Sign up</button> */}
-
             <ThemeProvider theme={theme}>
                 <Container component="main" maxWidth="xs">
                     <CssBaseline />
@@ -80,12 +68,12 @@ function SignUp() {
                             Sign Up
                         </Typography>
                         {signUpResponse !== undefined &&
-            <Alert 
-            variant="filled" 
-              sx={{mb:3,width:"auto"}}
-            severity={signUpResponse?.response}>
-              {signUpResponse?.message}
-            </Alert>}
+                            <Alert
+                                variant="filled"
+                                sx={{ mb: 3, width: "auto" }}
+                                severity={signUpResponse?.response}>
+                                {signUpResponse?.message}
+                            </Alert>}
                         <Box component="form" onSubmit={handleSignUp} noValidate sx={{ mt: 1 }}>
                             <TextField
                                 margin="normal"

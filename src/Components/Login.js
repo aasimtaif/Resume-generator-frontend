@@ -51,8 +51,11 @@ function Login() {
       console.log(res.data)
     } catch (err) {
       setLoginResponse({ message: 'Check your email/password again', response: 'error' })
-
-      console.log(err.message, "error")
+      if (err.response) setLoginResponse({ message: err.response?.data.message, response: 'error' })
+      console.log(err?.response.data, "error")
+      setTimeout(() => {
+        setLoginResponse()
+      }, 3000);
     }
   }
 
@@ -70,12 +73,12 @@ function Login() {
             }}
           >
             {loginResponse !== undefined &&
-            <Alert 
+              <Alert
 
-              sx={{mb:3,width:"auto"}}
-            severity={loginResponse?.response}>
-              {loginResponse?.message}
-            </Alert>}
+                sx={{ mb: 3, width: "auto" }}
+                severity={loginResponse?.response}>
+                {loginResponse?.message}
+              </Alert>}
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>

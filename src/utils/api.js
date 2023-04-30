@@ -1,6 +1,9 @@
 import axios from "axios";
 const API = axios.create({
-    baseURL: "https://resume-generator-backend.onrender.com/",
+    baseURL:
+        // "http://localhost:2000/"
+        "https://resume-generator-backend.onrender.com/"
+    ,
 });
 
 API.interceptors.request.use(
@@ -18,35 +21,42 @@ API.interceptors.request.use(
     }
 );
 
-const login = async(input) =>{
-const response = await API.post("login",input)
-console.log(response.data)
-return response.data
-}
-
-
-const signup = async(input) =>{
-    console.log(input)
-    const response = await API.post("signup",input)
+const login = async (input) => {
+    const response = await API.post("login", input)
     console.log(response.data)
     return response.data
-    }
-    const postResume = async(input) =>{
-        console.log(input)
-        const response = await API.post("form",input)
-        console.log(response)
-        return response
-    }
+}
 
-    const getUserResume = async(userId) =>{
-        const response = await API.get(`resume/user/${userId}`)
-        console.log(response.data)
-        return response.data
-    }
-    const getUserResumeByResumeId = async(resumeId) =>{
-        const response = await API.get(`resume/${resumeId}`)
-        console.log(response.data[0])
-        return response.data[0]
-    }
+const delteResumeByResumeId = async (resumeId) => {
+    const response = await API.delete(`resume/${resumeId}`)
+    console.log(response.data)
+    return response.data
+}
 
-export default {login,getUserResume,signup,postResume,getUserResumeByResumeId}
+const signup = async (input) => {
+    console.log(input)
+    const response = await API.post("signup", input)
+    console.log(response.data)
+    return response.data
+}
+
+const postResume = async (input) => {
+    console.log(input)
+    const response = await API.post("form", input)
+    console.log(response)
+    return response
+}
+
+const getUserResume = async (userId) => {
+    const response = await API.get(`resume/user/${userId}`)
+    console.log(response.data)
+    return response.data
+}
+
+const getUserResumeByResumeId = async (resumeId) => {
+    const response = await API.get(`resume/${resumeId}`)
+    console.log(response.data[0])
+    return response.data[0]
+}
+
+export default { login, getUserResume, signup, postResume, getUserResumeByResumeId, delteResumeByResumeId }
