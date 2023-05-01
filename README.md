@@ -1,4 +1,7 @@
 # Resume-generator-frontend
+
+Backend repository of this project [Backend](https://github.com/aasimtaif/Resume-generator-Backend).
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

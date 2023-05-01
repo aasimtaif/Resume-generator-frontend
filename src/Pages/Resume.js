@@ -7,7 +7,6 @@ import { BasicInfo, WorkExperience, Projects, Education, Summary, Skills, } from
 import { View, StyleSheet, Document, Page, } from '@react-pdf/renderer';
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import DeleteIcon from '@mui/icons-material/Delete';
 
 
 const styles = StyleSheet.create({
