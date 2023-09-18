@@ -74,7 +74,6 @@ function Login() {
           >
             {loginResponse !== undefined &&
               <Alert
-
                 sx={{ mb: 3, width: "auto" }}
                 severity={loginResponse?.response}>
                 {loginResponse?.message}
@@ -92,6 +91,7 @@ function Login() {
                 onChange={(event) => { handleInput(event) }}
                 autoComplete="email"
                 autoFocus
+                defaultValue="taifullahansari@gmail.com"
               />
               <TextField
                 margin="normal"
@@ -101,8 +101,8 @@ function Login() {
                 type="passowrd" name="password"
                 onChange={(event) => { handleInput(event) }}
                 autoComplete="current-password"
+                defaultValue="123456"
               />
-
               <Button
                 type="button"
                 fullWidth
@@ -121,7 +121,6 @@ function Login() {
               </Grid>
             </Box>
           </Box>
-
         </Container>
       </ThemeProvider>
 
