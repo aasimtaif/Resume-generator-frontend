@@ -26,7 +26,10 @@ function Login() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const [input, setInput] = useState();
+  const [input, setInput] = useState({
+    email: "testUser@gmail.com",
+    password: "123456"
+  });
   const [loginResponse, setLoginResponse] = useState();
 
   const handleInput = (event) => {
@@ -91,7 +94,7 @@ function Login() {
                 onChange={(event) => { handleInput(event) }}
                 autoComplete="email"
                 autoFocus
-                defaultValue="taifullahansari@gmail.com"
+                value={input.email}
               />
               <TextField
                 margin="normal"
@@ -101,7 +104,7 @@ function Login() {
                 type="passowrd" name="password"
                 onChange={(event) => { handleInput(event) }}
                 autoComplete="current-password"
-                defaultValue="123456"
+                value={input.password}
               />
               <Button
                 type="button"
@@ -120,6 +123,7 @@ function Login() {
                 </Grid>
               </Grid>
             </Box>
+
           </Box>
         </Container>
       </ThemeProvider>

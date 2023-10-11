@@ -1,8 +1,8 @@
 import axios from "axios";
 const API = axios.create({
     baseURL:
-        // "http://localhost:2000/"
-        "https://resume-generator-backend.onrender.com/"
+        "http://localhost:2000/"
+        // "https://resume-generator-backend.onrender.com/"
     ,
 });
 
@@ -22,6 +22,7 @@ API.interceptors.request.use(
 );
 
 const login = async (input) => {
+    console.log(input)
     const response = await API.post("login", input)
     console.log(response.data)
     return response.data
